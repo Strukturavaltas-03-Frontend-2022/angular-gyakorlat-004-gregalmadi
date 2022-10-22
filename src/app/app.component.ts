@@ -5,12 +5,14 @@ import { UserService } from './service/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'ang-basic-practice004-pipe';
 
   userList: User[] = this.userService.list;
+
+  phrase: string | HTMLInputElement = '';
 
   /**
    * FELADAT!
@@ -18,16 +20,15 @@ export class AppComponent {
    * @var phrase {string} - a keresőkifejezés
    */
 
-
-
-  constructor(
-    private userService: UserService,
-  ) {}
+  constructor(private userService: UserService) {}
 
   onDeleteUser(user: User): void {
     this.userService.removeUser(user);
   }
 
+  onChangePhrase(event: Event): void {
+    this.phrase = event.target as HTMLInputElement;
+  }
   /**
    * FELADAT!
    * Hozz létre egy új metódust, amely kezeli a keresőkifejezést.
@@ -37,7 +38,4 @@ export class AppComponent {
    * @param event {Event} - az esemény
    * @returns {void}
    */
-
-
-
 }
